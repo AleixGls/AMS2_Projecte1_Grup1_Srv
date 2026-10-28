@@ -1,0 +1,364 @@
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<cataleg>
+
+    <!-- Recintes -->
+    <recintes>
+        <recinte id="R1" nom="Teatre Principal">
+            <zona id="Z1" nom="Platea" tipus="numerada" aforament="100"/>
+            <zona id="Z2" nom="General" tipus="general" aforament="80"/>
+        </recinte>
+
+        <recinte id="R2" nom="Sala Gran">
+            <zona id="Z3" nom="Zona VIP" tipus="numerada" aforament="60"/>
+            <zona id="Z4" nom="Pati de butaques" tipus="numerada" aforament="120"/>
+        </recinte>
+
+        <recinte id="R3" nom="Auditori Central">
+            <zona id="Z5" nom="Platea" tipus="numerada" aforament="150"/>
+            <zona id="Z6" nom="Amfiteatre" tipus="numerada" aforament="100"/>
+            <zona id="Z7" nom="General" tipus="general" aforament="50"/>
+        </recinte>
+
+        <recinte id="R4" nom="Teatre del Parc">
+            <zona id="Z8" nom="Zona A" tipus="numerada" aforament="80"/>
+            <zona id="Z9" nom="Zona B" tipus="numerada" aforament="60"/>
+        </recinte>
+
+        <recinte id="R5" nom="Sala Underground">
+            <zona id="Z10" nom="VIP" tipus="numerada" aforament="40"/>
+            <zona id="Z11" nom="Pista" tipus="general" aforament="160"/>
+        </recinte>
+
+        <recinte id="R6" nom="Teatre Nou">
+            <zona id="Z12" nom="Platea" tipus="numerada" aforament="100"/>
+            <zona id="Z13" nom="Amfiteatre" tipus="numerada" aforament="70"/>
+        </recinte>
+
+        <recinte id="R7" nom="Palau de la Musica">
+            <zona id="Z14" nom="Platea Premium" tipus="numerada" aforament="80"/>
+            <zona id="Z15" nom="Lateral" tipus="numerada" aforament="100"/>
+            <zona id="Z16" nom="General" tipus="general" aforament="60"/>
+        </recinte>
+
+        <recinte id="R8" nom="Espai Cultural Nord">
+            <zona id="Z17" nom="Zona Preferent" tipus="numerada" aforament="70"/>
+            <zona id="Z18" nom="Zona General" tipus="general" aforament="130"/>
+        </recinte>
+
+        <recinte id="R9" nom="Teatre de la Vila">
+            <zona id="Z19" nom="Platea" tipus="numerada" aforament="90"/>
+            <zona id="Z20" nom="Amfiteatre" tipus="numerada" aforament="60"/>
+        </recinte>
+
+        <recinte id="R10" nom="Arena Central">
+            <zona id="Z21" nom="VIP" tipus="numerada" aforament="100"/>
+            <zona id="Z22" nom="Pista General" tipus="general" aforament="400"/>
+            <zona id="Z23" nom="Tribuna" tipus="numerada" aforament="200"/>
+        </recinte>
+
+        <recinte id="R11" nom="Sala Mediterrania">
+            <zona id="Z24" nom="Zona A" tipus="numerada" aforament="80"/>
+            <zona id="Z25" nom="Zona B" tipus="numerada" aforament="80"/>
+        </recinte>
+
+        <recinte id="R12" nom="Teatre del Raval">
+            <zona id="Z26" nom="Platea" tipus="numerada" aforament="100"/>
+            <zona id="Z27" nom="General" tipus="general" aforament="100"/>
+        </recinte>
+
+        <recinte id="R13" nom="Auditori de la Costa">
+            <zona id="Z28" nom="Platea" tipus="numerada" aforament="120"/>
+            <zona id="Z29" nom="Amfiteatre" tipus="numerada" aforament="80"/>
+        </recinte>
+
+        <recinte id="R14" nom="Sala del Mercat">
+            <zona id="Z30" nom="Preferent" tipus="numerada" aforament="50"/>
+            <zona id="Z31" nom="General" tipus="general" aforament="150"/>
+        </recinte>
+
+        <recinte id="R15" nom="Teatre de la Llum">
+            <zona id="Z32" nom="Platea" tipus="numerada" aforament="90"/>
+            <zona id="Z33" nom="Amfiteatre" tipus="numerada" aforament="70"/>
+            <zona id="Z34" nom="General" tipus="general" aforament="40"/>
+        </recinte>
+
+        <recinte id="R16" nom="Centre d'Arts Esceniques">
+            <zona id="Z35" nom="Zona Premium" tipus="numerada" aforament="60"/>
+            <zona id="Z36" nom="Zona Estandard" tipus="numerada" aforament="120"/>
+        </recinte>
+
+        <recinte id="R17" nom="Pavello de la Ciutat">
+            <zona id="Z37" nom="Tribuna VIP" tipus="numerada" aforament="150"/>
+            <zona id="Z38" nom="Pista" tipus="general" aforament="500"/>
+        </recinte>
+
+        <recinte id="R18" nom="Teatre de Montjuic">
+            <zona id="Z39" nom="Platea" tipus="numerada" aforament="100"/>
+            <zona id="Z40" nom="Amfiteatre" tipus="numerada" aforament="80"/>
+        </recinte>
+
+        <recinte id="R19" nom="Espai Jove">
+            <zona id="Z41" nom="Zona Preferent" tipus="numerada" aforament="50"/>
+            <zona id="Z42" nom="Zona General" tipus="general" aforament="200"/>
+            <zona id="Z43" nom="Zona Reduida" tipus="numerada" aforament="30"/>
+        </recinte>
+
+        <recinte id="R20" nom="Gran Teatre Metropolita">
+            <zona id="Z44" nom="Platea Premium" tipus="numerada" aforament="120"/>
+            <zona id="Z45" nom="Amfiteatre" tipus="numerada" aforament="100"/>
+        </recinte>
+    </recintes>
+
+    <!-- Esdeveniments -->
+    <esdeveniments>
+
+        <esdeveniment id="E1" recinte="R1">
+            <nom>Cosas que no se dicen al cenar</nom>
+            <dataHora>2026-11-21T21:30</dataHora>
+            <categoria>Monologo</categoria>
+            <descripcio>Una obra de humor con la que pasar un buen rato en familia.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T1" nom="Premium" zona="Z1" preu="18.00" quota="50"/>
+                <tipusEntrada id="T2" nom="Estandard" zona="Z1" preu="14.00" quota="40"/>
+                <tipusEntrada id="T3" nom="Economica" zona="Z2" preu="12.00" quota="60"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E2" recinte="R2">
+            <nom>La casa dels secrets</nom>
+            <dataHora>2026-11-22T20:00</dataHora>
+            <categoria>Teatre</categoria>
+            <descripcio>Una comedia teatral plena de secrets, confusions i situacions inesperades.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T4" nom="VIP" zona="Z3" preu="28.00" quota="30"/>
+                <tipusEntrada id="T5" nom="Estandard" zona="Z4" preu="20.00" quota="80"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E3" recinte="R3">
+            <nom>Simfonia de tardor</nom>
+            <dataHora>2026-11-25T19:30</dataHora>
+            <categoria>Concert</categoria>
+            <descripcio>Una vetllada de musica classica interpretada per una orquestra simfonica.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T6" nom="Premium" zona="Z5" preu="35.00" quota="60"/>
+                <tipusEntrada id="T7" nom="Estandard" zona="Z6" preu="25.00" quota="70"/>
+                <tipusEntrada id="T8" nom="General" zona="Z7" preu="15.00" quota="40"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E4" recinte="R4">
+            <nom>El misteri del rellotge</nom>
+            <dataHora>2026-11-27T18:00</dataHora>
+            <categoria>Familiar</categoria>
+            <descripcio>Una aventura teatral per a petits i grans plena de misteri i imaginacio.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T9" nom="Fila Preferent" zona="Z8" preu="16.00" quota="50"/>
+                <tipusEntrada id="T10" nom="General" zona="Z9" preu="11.00" quota="40"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E5" recinte="R5">
+            <nom>Nit de Rock</nom>
+            <dataHora>2026-11-28T22:00</dataHora>
+            <categoria>Concert</categoria>
+            <descripcio>Una nit de rock en directe amb bandes emergents i grans classics.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T11" nom="VIP" zona="Z10" preu="32.00" quota="25"/>
+                <tipusEntrada id="T12" nom="Pista" zona="Z11" preu="18.00" quota="120"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E6" recinte="R6">
+            <nom>Romeu i Julieta</nom>
+            <dataHora>2026-12-01T20:30</dataHora>
+            <categoria>Drama</categoria>
+            <descripcio>Una adaptacio contemporania del classic de William Shakespeare.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T13" nom="Premium" zona="Z12" preu="26.00" quota="60"/>
+                <tipusEntrada id="T14" nom="Estandard" zona="Z13" preu="18.00" quota="50"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E7" recinte="R7">
+            <nom>Nits de Jazz</nom>
+            <dataHora>2026-12-03T21:00</dataHora>
+            <categoria>Jazz</categoria>
+            <descripcio>Un concert intim amb els millors classics del jazz i improvisacions en directe.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T15" nom="Premium" zona="Z14" preu="30.00" quota="50"/>
+                <tipusEntrada id="T16" nom="Estandard" zona="Z15" preu="22.00" quota="70"/>
+                <tipusEntrada id="T17" nom="General" zona="Z16" preu="15.00" quota="40"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E8" recinte="R8">
+            <nom>Impro Show</nom>
+            <dataHora>2026-12-05T20:00</dataHora>
+            <categoria>Comedia</categoria>
+            <descripcio>Un espectacle d'improvisacio on el public decideix el rumb de les escenes.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T18" nom="Preferent" zona="Z17" preu="20.00" quota="40"/>
+                <tipusEntrada id="T19" nom="General" zona="Z18" preu="13.00" quota="100"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E9" recinte="R9">
+            <nom>El somni d'una nit d'estiu</nom>
+            <dataHora>2026-12-06T19:00</dataHora>
+            <categoria>Teatre</categoria>
+            <descripcio>Una comedia fantastica plena de magia, amor i situacions absurdes.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T20" nom="Platea" zona="Z19" preu="24.00" quota="60"/>
+                <tipusEntrada id="T21" nom="Amfiteatre" zona="Z20" preu="16.00" quota="40"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E10" recinte="R10">
+            <nom>Festival Electro Night</nom>
+            <dataHora>2026-12-08T22:00</dataHora>
+            <categoria>Musica electronica</categoria>
+            <descripcio>Un festival de musica electronica amb DJs i espectacles visuals.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T22" nom="VIP" zona="Z21" preu="55.00" quota="80"/>
+                <tipusEntrada id="T23" nom="Pista" zona="Z22" preu="28.00" quota="300"/>
+                <tipusEntrada id="T24" nom="Tribuna" zona="Z23" preu="35.00" quota="120"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E11" recinte="R11">
+            <nom>Contes a la vora del foc</nom>
+            <dataHora>2026-12-10T17:30</dataHora>
+            <categoria>Infantil</categoria>
+            <descripcio>Una sessio de contes i titelles per gaudir en familia.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T25" nom="Zona A" zona="Z24" preu="12.00" quota="60"/>
+                <tipusEntrada id="T26" nom="Zona B" zona="Z25" preu="9.00" quota="60"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E12" recinte="R12">
+            <nom>Un divorci divertit</nom>
+            <dataHora>2026-12-12T20:30</dataHora>
+            <categoria>Comedia</categoria>
+            <descripcio>Una parella intenta separar-se sense perdre el sentit de l'humor.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T27" nom="Premium" zona="Z26" preu="22.00" quota="60"/>
+                <tipusEntrada id="T28" nom="General" zona="Z27" preu="14.00" quota="80"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E13" recinte="R13">
+            <nom>Veus del Mediterrani</nom>
+            <dataHora>2026-12-14T20:00</dataHora>
+            <categoria>Concert</categoria>
+            <descripcio>Un viatge musical per les melodies tradicionals del Mediterrani.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T29" nom="Platea" zona="Z28" preu="27.00" quota="70"/>
+                <tipusEntrada id="T30" nom="Amfiteatre" zona="Z29" preu="19.00" quota="50"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E14" recinte="R14">
+            <nom>Micro obert</nom>
+            <dataHora>2026-12-16T21:00</dataHora>
+            <categoria>Monologo</categoria>
+            <descripcio>Una nit de comedia amb diferents humoristes i sorpreses en directe.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T31" nom="Preferent" zona="Z30" preu="18.00" quota="35"/>
+                <tipusEntrada id="T32" nom="General" zona="Z31" preu="12.00" quota="100"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E15" recinte="R15">
+            <nom>El viatge de la lluna</nom>
+            <dataHora>2026-12-18T18:00</dataHora>
+            <categoria>Musical</categoria>
+            <descripcio>Un musical familiar amb cancons originals, dansa i una historia fantastica.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T33" nom="Premium" zona="Z32" preu="29.00" quota="60"/>
+                <tipusEntrada id="T34" nom="Estandard" zona="Z33" preu="21.00" quota="45"/>
+                <tipusEntrada id="T35" nom="General" zona="Z34" preu="14.00" quota="30"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E16" recinte="R16">
+            <nom>La ultima funcio</nom>
+            <dataHora>2026-12-20T19:30</dataHora>
+            <categoria>Drama</categoria>
+            <descripcio>Una companyia teatral s'enfronta als seus secrets abans de baixar el teló.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T36" nom="Premium" zona="Z35" preu="25.00" quota="40"/>
+                <tipusEntrada id="T37" nom="Estandard" zona="Z36" preu="17.00" quota="80"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E17" recinte="R17">
+            <nom>Pop Festival</nom>
+            <dataHora>2026-12-22T21:00</dataHora>
+            <categoria>Concert</categoria>
+            <descripcio>Una nit amb els grans exits del pop actual i artistes convidats.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T38" nom="VIP" zona="Z37" preu="60.00" quota="100"/>
+                <tipusEntrada id="T39" nom="Pista General" zona="Z38" preu="30.00" quota="350"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E18" recinte="R18">
+            <nom>El retrat perdut</nom>
+            <dataHora>2026-12-26T20:00</dataHora>
+            <categoria>Suspens</categoria>
+            <descripcio>Un investigador intenta resoldre un misteri relacionat amb una obra d'art desapareguda.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T40" nom="Platea" zona="Z39" preu="23.00" quota="60"/>
+                <tipusEntrada id="T41" nom="Amfiteatre" zona="Z40" preu="15.00" quota="50"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E19" recinte="R19">
+            <nom>Talent Jove</nom>
+            <dataHora>2026-12-28T19:00</dataHora>
+            <categoria>Espectacle</categoria>
+            <descripcio>Una mostra de talents emergents amb musica, dansa i actuacions en directe.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T42" nom="Preferent" zona="Z41" preu="16.00" quota="35"/>
+                <tipusEntrada id="T43" nom="General" zona="Z42" preu="10.00" quota="150"/>
+                <tipusEntrada id="T44" nom="Reduida" zona="Z43" preu="7.00" quota="20"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+        <esdeveniment id="E20" recinte="R20">
+            <nom>El gran musical</nom>
+            <dataHora>2026-12-30T20:30</dataHora>
+            <categoria>Musical</categoria>
+            <descripcio>Un gran espectacle musical amb coreografies, escenografia i interpretacions en directe.</descripcio>
+            <imatge>placeholder.jpg</imatge>
+            <tipusEntrades>
+                <tipusEntrada id="T45" nom="Premium" zona="Z44" preu="40.00" quota="80"/>
+                <tipusEntrada id="T46" nom="Estandard" zona="Z45" preu="28.00" quota="70"/>
+            </tipusEntrades>
+        </esdeveniment>
+
+    </esdeveniments>
+
+</cataleg>
