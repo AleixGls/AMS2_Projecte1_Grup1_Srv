@@ -1,19 +1,25 @@
 package grup1.server;
 
+
+
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 import org.json.JSONObject;
-
 import java.net.InetSocketAddress;
 
-public class MainSrv extends WebSocketServer {
 
+
+public class ServerConnection extends WebSocketServer {
+    
     // Constructor
-    public MainSrv(int puerto) {
+    public ServerConnection(int puerto) {
         super(new InetSocketAddress(puerto));
     }
 
+
+    
+    // Metodes
     @Override
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
         System.out.println("Cliente conectado: " + conn.getRemoteSocketAddress());
@@ -90,13 +96,5 @@ public class MainSrv extends WebSocketServer {
     @Override
     public void onStart() {
         System.out.println("Servidor iniciado en el puerto " + getPort());
-    }
-
-    // Metodo main para iniciar el servidor
-    public static void main(String[] args) {
-        MainSrv servidor = new MainSrv(3000);
-        servidor.start();
-
-        System.out.println("Esperando conexiones...");
     }
 }
