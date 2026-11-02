@@ -1,7 +1,14 @@
 package grup1.server;
 
+
+
 public class Main {
+
+    // Metodes
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        ServerConnection servidor = new ServerConnection(3000);
+        servidor.start();
+
+        System.out.println("Esperando conexiones...");
     }
 }
