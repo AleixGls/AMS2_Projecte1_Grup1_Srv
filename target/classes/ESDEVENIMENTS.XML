@@ -1,9 +1,9 @@
-```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <cataleg>
 
     <!-- Recintes -->
     <recintes>
+
         <recinte id="R1" nom="Teatre Principal">
             <zona id="Z1" nom="Platea" tipus="numerada" aforament="100"/>
             <zona id="Z2" nom="General" tipus="general" aforament="80"/>
@@ -108,6 +108,7 @@
             <zona id="Z44" nom="Platea Premium" tipus="numerada" aforament="120"/>
             <zona id="Z45" nom="Amfiteatre" tipus="numerada" aforament="100"/>
         </recinte>
+        
     </recintes>
 
     <!-- Esdeveniments -->

@@ -3,7 +3,6 @@ package grup1.server.objectesDades;
 
 
 import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.List;
 
 
@@ -17,7 +16,7 @@ public class Esdeveniment {
     private LocalDateTime dataHora;
     private String categoria;
     private String descripcio;
-    private Base64 imatge;
+    private String imatge;
     private List<TipusEntrada> tipusEntrades;
 
 
@@ -30,7 +29,7 @@ public class Esdeveniment {
         LocalDateTime dataHora,
         String categoria,
         String descripcio,
-        Base64 imatge,
+        String imatge,
         List<TipusEntrada> tipusEntrades
     ) {
         this.id = id;
@@ -70,7 +69,7 @@ public class Esdeveniment {
         return descripcio;
     }
 
-    public Base64 getImatge() {
+    public String getImatge() {
         return imatge;
     }
 
