@@ -7,10 +7,10 @@ import org.json.JSONObject;
 
 import java.net.InetSocketAddress;
 
-public class Main extends WebSocketServer {
+public class MainSrv extends WebSocketServer {
 
     // Constructor
-    public Main(int puerto) {
+    public MainSrv(int puerto) {
         super(new InetSocketAddress(puerto));
     }
 
@@ -94,7 +94,7 @@ public class Main extends WebSocketServer {
 
     // Metodo main para iniciar el servidor
     public static void main(String[] args) {
-        Servidor servidor = new Servidor(3000);
+        MainSrv servidor = new MainSrv(3000);
         servidor.start();
 
         System.out.println("Esperando conexiones...");
