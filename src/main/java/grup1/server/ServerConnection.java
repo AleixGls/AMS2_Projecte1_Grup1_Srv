@@ -7,10 +7,17 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 import org.json.JSONObject;
 import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
 public class ServerConnection extends WebSocketServer {
+
+    // Atributs
+    private Map<WebSocket, String> catalogosClientes = new HashMap<>();
+
+
     
     // Constructor
     public ServerConnection(int puerto) {
