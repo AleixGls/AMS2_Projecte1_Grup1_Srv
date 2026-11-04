@@ -1,10 +1,10 @@
-grup1\server\ExtractorDadesXML.class
+grup1\server\objectesDades\Esdeveniment.class
 grup1\server\objectesDades\Zona.class
-grup1\server\ClientTestCLI.class
+grup1\server\ConversorDadesJSON.class
+grup1\server\objectesDades\Cataleg.class
+grup1\server\ExtractorDadesXML.class
+grup1\server\ServerConnection.class
 grup1\server\Main.class
 grup1\server\objectesDades\TipusEntrada.class
-grup1\server\objectesDades\Esdeveniment.class
-grup1\server\ServerConnection.class
-grup1\server\objectesDades\Cataleg.class
+grup1\server\ClientTestCLI.class
 grup1\server\objectesDades\Recinte.class
-grup1\server\ConversorDadesJSON.class
