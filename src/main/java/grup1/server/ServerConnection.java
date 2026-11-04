@@ -17,6 +17,7 @@ public class ServerConnection extends WebSocketServer {
 
     // Atributs
     private Map<WebSocket, String> catalogosClientes = new ConcurrentHashMap<>();
+    private GestorCompres gestorCompres = new GestorCompres();
 
 
     
@@ -157,6 +158,18 @@ public class ServerConnection extends WebSocketServer {
 
                     conn.send(respuesta.toString());
                 }
+            }
+
+            // Peticio de compra d'entrades generals
+            else if (type.equals("compra")) {
+
+                System.out.println("COMPRA solicitada");
+
+                // Processar la compra i enviar la resposta al client
+                JSONObject respuesta = gestorCompres.processarCompra(obj);
+                conn.send(respuesta.toString());
+
+                System.out.println("COMPRA resposta: " + respuesta);
             }
 
             else {
