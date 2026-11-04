@@ -71,10 +71,10 @@ function Invoke-RemoteBash {
     $b64 = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($lf))
 
     if ($SudoPassword) {
-        $remote = 'IFS= read -r SUDO_PASSWORD; SUDO_PASSWORD=${SUDO_PASSWORD%[[:cntrl:]]}; export SUDO_PASSWORD; echo ' + $b64 + ' | base64 -d | bash -s'
+        $remote = 'IFS= read -r SUDO_PASSWORD; SUDO_PASSWORD=${SUDO_PASSWORD%[[:cntrl:]]}; export SUDO_PASSWORD; echo ' + $b64 + ' | base64 -d | bash -l -s'
         $SudoPassword | & ssh -T -p $Port @SshOpts $Target $remote | Out-Host
     } else {
-        $remote = 'echo ' + $b64 + ' | base64 -d | bash -s'
+        $remote = 'echo ' + $b64 + ' | base64 -d | bash -l -s'
         & ssh -T -p $Port @SshOpts $Target $remote | Out-Host
     }
     return $LASTEXITCODE

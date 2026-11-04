@@ -60,12 +60,17 @@ while netstat -an | grep -q ':__SERVER_PORT__.*LISTEN'; do
 done
 
 setsid nohup java -jar __JAR_NAME__ > output.log 2>&1 < /dev/null &
-sleep 1
+sleep 3
 PID_JAVA=$(ps aux | grep 'java -jar __JAR_NAME__' | grep -v 'grep' | awk '{print $2}')
 if [ -n "$PID_JAVA" ]; then
   echo "Nou procés __JAR_NAME__ amb PID $PID_JAVA arrencat correctament."
 else
   echo "Error: No s'ha pogut arrencar el nou procés __JAR_NAME__."
+  echo "--- Diagnostic ---"
+  command -v java || echo "java NO esta al PATH de la sessio SSH"
+  java -version 2>&1 || true
+  echo "--- Ultimes linies de output.log ---"
+  tail -n 20 output.log 2>&1 || true
   exit 1
 fi
 '@

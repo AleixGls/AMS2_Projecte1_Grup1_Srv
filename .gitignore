@@ -1,5 +1,15 @@
-# Maven
-/target
+
+# ==========================================
+# MAVEN
+# ==========================================
+
+# Directorios de compilación y resultados
+**/target/
+**/build/
+**/dist/
+**/out/
+
+# Archivos generados por Maven
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -7,16 +17,28 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 
-# Java compilados
+# ==========================================
+# JAVA
+# ==========================================
+
 *.class
 *.jar
 *.war
 *.ear
 
-# Logs
-*.log
+# ==========================================
+# LOGS
+# ==========================================
 
-# IDE - Visual Studio Code
+*.log
+logs/
+log/
+
+# ==========================================
+# IDEs
+# ==========================================
+
+# Visual Studio Code
 .vscode/
 .history/
 
@@ -31,22 +53,45 @@ buildNumber.properties
 
 # NetBeans
 /nbproject/private/
-/build/
-/nbbuild/
-/dist/
-/nbdist/
 
-# Archivos temporales
+# ==========================================
+# ARCHIVOS TEMPORALES
+# ==========================================
+
 *.tmp
+*.temp
 *.swp
+*.swo
 *.bak
+*~
 
-# Variables de entorno y configuración privada
-/proxmox/*.env
+# ==========================================
+# VARIABLES DE ENTORNO Y SECRETOS
+# ==========================================
+
 .env
 .env.*
 !.env.example
 
-# Archivos de configuración local
+# Configuración privada de Proxmox
+/proxmox/*.env
+/proxmox/*.env.*
+
+# Ejemplos de configuración permitidos
+!/proxmox/*.env.example
+
+# ==========================================
+# CONFIGURACIÓN LOCAL DE SPRING
+# ==========================================
+
 application-local.properties
 application-local.yml
+application-local.yaml
+
+# ==========================================
+# SISTEMA OPERATIVO
+# ==========================================
+
+.DS_Store
+Thumbs.db
+desktop.ini

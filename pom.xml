@@ -66,8 +66,11 @@
                             <includeGroupIds>
                                 org.json,
                                 org.java-websocket,
-                                tools.jackson.core
+                                tools.jackson.core,
+                                com.fasterxml.jackson.core,
+                                org.slf4j
                             </includeGroupIds>
+                            <includeScope>runtime</includeScope>
                             <outputDirectory>${project.build.outputDirectory}</outputDirectory>
                             <excludes>
                                 META-INF/MANIFEST.MF,
