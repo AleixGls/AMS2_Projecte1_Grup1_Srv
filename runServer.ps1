@@ -1,0 +1,1 @@
+.\run.ps1 grup1.server.Main

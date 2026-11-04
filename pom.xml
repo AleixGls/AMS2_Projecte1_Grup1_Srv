@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>grup1.server</groupId>
@@ -9,9 +10,11 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
+
     <dependencies>
 
         <dependency>
@@ -26,25 +29,110 @@
             <version>20250517</version>
         </dependency>
 
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>3.2.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
+
+            <!-- Compilador Java 21 -->
             <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
                 <configuration>
-                    <mainClass>com.example.Main</mainClass>
+                    <release>21</release>
                 </configuration>
             </plugin>
 
+            <!-- Extraer dependencias para poder ejecutar desde target/classes -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.6.1</version>
+                <executions>
+                    <execution>
+                        <id>unpack-runtime-libs</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>unpack-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>
+                                org.json,
+                                org.java-websocket,
+                                tools.jackson.core,
+                                com.fasterxml.jackson.core,
+                                org.slf4j
+                            </includeGroupIds>
+                            <includeScope>runtime</includeScope>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <excludes>
+                                META-INF/MANIFEST.MF,
+                                META-INF/*.SF,
+                                META-INF/*.DSA,
+                                META-INF/*.RSA,
+                                **/module-info.class
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Ejecutar servidor desde Maven -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
+                <configuration>
+                    <mainClass>grup1.server.Main</mainClass>
+                </configuration>
             </plugin>
+
         </plugins>
-    </build>    
+    </build>
+
+    <profiles>
+
+        <!-- Generar JAR independiente del servidor -->
+        <profile>
+            <id>server</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>3.4.2</version>
+
+                        <executions>
+                            <execution>
+                                <id>server-jar</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+
+                                <configuration>
+                                    <classifier>server</classifier>
+
+                                    <archive>
+                                        <manifest>
+                                            <mainClass>grup1.server.Main</mainClass>
+                                        </manifest>
+                                    </archive>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>
