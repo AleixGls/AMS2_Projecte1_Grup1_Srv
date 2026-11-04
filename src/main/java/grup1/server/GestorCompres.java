@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.File;
 import java.nio.file.Files;
-import java.util.UUID;
+import java.util.Random;
 
 
 
@@ -21,6 +21,11 @@ public class GestorCompres {
     // Constants
     private final String DIRECTORI_ENTRADES =
         System.getProperty("user.dir") + File.separator + "entrades";
+    private final String LLETRES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final String NUMEROS = "0123456789";
+
+    // Variables
+    private Random random = new Random();
 
 
 
@@ -74,8 +79,11 @@ public class GestorCompres {
 
                 JSONArray venudes = llegirEntrades(idEsdeveniment);
                 for (int j = 0; j < quantitat; j++) {
-                    String localitzador = idEsdeveniment + "-" + idTipus + "-" +
-                        UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+                    // Generar localitzadors fins que en surti un que no existeixi
+                    String localitzador = generarLocalitzador();
+                    while (existeixLocalitzador(localitzador, localitzadors)) {
+                        localitzador = generarLocalitzador();
+                    }
 
                     JSONObject nova = new JSONObject();
                     nova.put("tipusEntrada", idTipus);
@@ -153,6 +161,49 @@ public class GestorCompres {
         directori.mkdirs();
         File fitxer = new File(directori, idEsdeveniment + ".json");
         Files.writeString(fitxer.toPath(), venudes.toString(4));
+    }
+
+    // Genera un localitzador de 3 lletres i 3 numeros (ex: ABC123)
+    private String generarLocalitzador() {
+        String localitzador = "";
+        for (int i = 0; i < 3; i++) {
+            localitzador = localitzador + LLETRES.charAt(random.nextInt(LLETRES.length()));
+        }
+        for (int i = 0; i < 3; i++) {
+            localitzador = localitzador + NUMEROS.charAt(random.nextInt(NUMEROS.length()));
+        }
+        return localitzador;
+    }
+
+    // Comprova si un localitzador ja existeix en algun fitxer d'entrades o en la compra actual
+    private boolean existeixLocalitzador(String localitzador, JSONArray generats) throws Exception {
+
+        // Comprovar els localitzadors generats en aquesta mateixa compra
+        for (int i = 0; i < generats.length(); i++) {
+            if (generats.getString(i).equals(localitzador)) {
+                return true;
+            }
+        }
+
+        // Comprovar tots els fitxers d'entrades de tots els esdeveniments
+        File directori = new File(DIRECTORI_ENTRADES);
+        File[] fitxers = directori.listFiles();
+        if (fitxers == null) {
+            return false;
+        }
+
+        for (File fitxer : fitxers) {
+            if (fitxer.getName().endsWith(".json")) {
+                JSONArray venudes = new JSONArray(Files.readString(fitxer.toPath()));
+                for (int i = 0; i < venudes.length(); i++) {
+                    if (venudes.getJSONObject(i).getString("localitzador").equals(localitzador)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     // Crea una resposta d'error per enviar al client
