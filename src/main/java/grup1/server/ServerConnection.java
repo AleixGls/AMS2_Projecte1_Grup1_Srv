@@ -172,6 +172,18 @@ Cataleg cataleg = extractor.processarBBDD();
                 System.out.println("COMPRA resposta: " + respuesta);
             }
 
+            // Peticio de les entrades comprades amb un correu
+            else if (type.equals("lesMevesEntrades")) {
+
+                System.out.println("LES MEVES ENTRADES solicitades");
+
+                // Consultar les entrades del correu i enviar-les al client
+                JSONObject respuesta = gestorCompres.consultarEntrades(obj.getString("correu"));
+                conn.send(respuesta.toString());
+
+                System.out.println("LES MEVES ENTRADES enviades");
+            }
+
             else {
                 System.out.println("Tipo de mensaje desconocido: " + type);
 
