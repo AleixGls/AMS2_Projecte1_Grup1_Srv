@@ -33,8 +33,8 @@ public class ServerConnection extends WebSocketServer {
         try {
 
             // Crear el extractor i obtenir el objecte Cataleg
-            ExtractorDadesXML extractor = new ExtractorDadesXML("ESDEVENIMENTS.XML");
-            Cataleg cataleg = extractor.processarFitxerXML();
+            ExtractorDadesBBDD extractor = new ExtractorDadesBBDD("cataleg.db");
+Cataleg cataleg = extractor.processarBBDD();
 
             // Comprovar que s'ha pogut llegir el XML
             if (cataleg == null) {
