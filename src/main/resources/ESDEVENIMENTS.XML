@@ -2,114 +2,119 @@
 <cataleg>
 
     <!-- Recintes -->
+
     <recintes>
 
-        <recinte id="R1" nom="Teatre Principal">
-            <zona id="Z1" nom="Platea" tipus="numerada" aforament="100"/>
-            <zona id="Z2" nom="General" tipus="general" aforament="80"/>
+        <!-- SALES PETITES: 50 numerades + 20 generals -->
+
+        <recinte id="R1" nom="Teatre del Parc">
+            <zona id="Z1" nom="Platea" tipus="numerada" aforament="50"/>
+            <zona id="Z2" nom="General" tipus="general" aforament="20"/>
         </recinte>
 
-        <recinte id="R2" nom="Sala Gran">
-            <zona id="Z3" nom="Zona VIP" tipus="numerada" aforament="60"/>
-            <zona id="Z4" nom="Pati de butaques" tipus="numerada" aforament="120"/>
+        <recinte id="R2" nom="Sala Underground">
+            <zona id="Z3" nom="Zona VIP" tipus="numerada" aforament="50"/>
+            <zona id="Z4" nom="Pista" tipus="general" aforament="20"/>
         </recinte>
 
-        <recinte id="R3" nom="Auditori Central">
-            <zona id="Z5" nom="Platea" tipus="numerada" aforament="150"/>
-            <zona id="Z6" nom="Amfiteatre" tipus="numerada" aforament="100"/>
-            <zona id="Z7" nom="General" tipus="general" aforament="50"/>
+        <recinte id="R3" nom="Espai Jove">
+            <zona id="Z5" nom="Platea" tipus="numerada" aforament="50"/>
+            <zona id="Z6" nom="General" tipus="general" aforament="20"/>
         </recinte>
 
-        <recinte id="R4" nom="Teatre del Parc">
-            <zona id="Z8" nom="Zona A" tipus="numerada" aforament="80"/>
-            <zona id="Z9" nom="Zona B" tipus="numerada" aforament="60"/>
+        <recinte id="R4" nom="Sala del Mercat">
+            <zona id="Z7" nom="Zona A" tipus="numerada" aforament="50"/>
+            <zona id="Z8" nom="Zona B" tipus="general" aforament="20"/>
         </recinte>
 
-        <recinte id="R5" nom="Sala Underground">
-            <zona id="Z10" nom="VIP" tipus="numerada" aforament="40"/>
-            <zona id="Z11" nom="Pista" tipus="general" aforament="160"/>
+        <recinte id="R5" nom="Teatre de la Vila">
+            <zona id="Z9" nom="Platea" tipus="numerada" aforament="50"/>
+            <zona id="Z10" nom="Amfiteatre" tipus="general" aforament="20"/>
         </recinte>
 
-        <recinte id="R6" nom="Teatre Nou">
-            <zona id="Z12" nom="Platea" tipus="numerada" aforament="100"/>
-            <zona id="Z13" nom="Amfiteatre" tipus="numerada" aforament="70"/>
+
+        <!-- SALES MITJANES: 75 numerades + 30 generals -->
+
+        <recinte id="R6" nom="Teatre Principal">
+            <zona id="Z11" nom="Platea" tipus="numerada" aforament="75"/>
+            <zona id="Z12" nom="Amfiteatre" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R7" nom="Palau de la Musica">
-            <zona id="Z14" nom="Platea Premium" tipus="numerada" aforament="80"/>
-            <zona id="Z15" nom="Lateral" tipus="numerada" aforament="100"/>
-            <zona id="Z16" nom="General" tipus="general" aforament="60"/>
+        <recinte id="R7" nom="Auditori de la Costa">
+            <zona id="Z13" nom="Platea Premium" tipus="numerada" aforament="75"/>
+            <zona id="Z14" nom="Lateral" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R8" nom="Espai Cultural Nord">
-            <zona id="Z17" nom="Zona Preferent" tipus="numerada" aforament="70"/>
-            <zona id="Z18" nom="Zona General" tipus="general" aforament="130"/>
+        <recinte id="R8" nom="Teatre del Raval">
+            <zona id="Z15" nom="Zona Preferent" tipus="numerada" aforament="75"/>
+            <zona id="Z16" nom="Zona General" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R9" nom="Teatre de la Vila">
-            <zona id="Z19" nom="Platea" tipus="numerada" aforament="90"/>
-            <zona id="Z20" nom="Amfiteatre" tipus="numerada" aforament="60"/>
+        <recinte id="R9" nom="Sala Mediterrania">
+            <zona id="Z17" nom="Platea" tipus="numerada" aforament="75"/>
+            <zona id="Z18" nom="Amfiteatre" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R10" nom="Arena Central">
-            <zona id="Z21" nom="VIP" tipus="numerada" aforament="100"/>
-            <zona id="Z22" nom="Pista General" tipus="general" aforament="400"/>
-            <zona id="Z23" nom="Tribuna" tipus="numerada" aforament="200"/>
+        <recinte id="R10" nom="Teatre Nou">
+            <zona id="Z19" nom="VIP" tipus="numerada" aforament="75"/>
+            <zona id="Z20" nom="Pista General" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R11" nom="Sala Mediterrania">
-            <zona id="Z24" nom="Zona A" tipus="numerada" aforament="80"/>
-            <zona id="Z25" nom="Zona B" tipus="numerada" aforament="80"/>
+        <recinte id="R11" nom="Espai Cultural Nord">
+            <zona id="Z21" nom="Zona A" tipus="numerada" aforament="75"/>
+            <zona id="Z22" nom="Zona B" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R12" nom="Teatre del Raval">
-            <zona id="Z26" nom="Platea" tipus="numerada" aforament="100"/>
-            <zona id="Z27" nom="General" tipus="general" aforament="100"/>
+        <recinte id="R12" nom="Teatre de la Llum">
+            <zona id="Z23" nom="Platea" tipus="numerada" aforament="75"/>
+            <zona id="Z24" nom="General" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R13" nom="Auditori de la Costa">
-            <zona id="Z28" nom="Platea" tipus="numerada" aforament="120"/>
-            <zona id="Z29" nom="Amfiteatre" tipus="numerada" aforament="80"/>
+        <recinte id="R13" nom="Auditori Central">
+            <zona id="Z25" nom="Platea" tipus="numerada" aforament="75"/>
+            <zona id="Z26" nom="Amfiteatre" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R14" nom="Sala del Mercat">
-            <zona id="Z30" nom="Preferent" tipus="numerada" aforament="50"/>
-            <zona id="Z31" nom="General" tipus="general" aforament="150"/>
+        <recinte id="R14" nom="Centre d'Arts Esceniques">
+            <zona id="Z27" nom="Preferent" tipus="numerada" aforament="75"/>
+            <zona id="Z28" nom="General" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R15" nom="Teatre de la Llum">
-            <zona id="Z32" nom="Platea" tipus="numerada" aforament="90"/>
-            <zona id="Z33" nom="Amfiteatre" tipus="numerada" aforament="70"/>
-            <zona id="Z34" nom="General" tipus="general" aforament="40"/>
+        <recinte id="R15" nom="Teatre de Montjuic">
+            <zona id="Z29" nom="Platea" tipus="numerada" aforament="75"/>
+            <zona id="Z30" nom="Amfiteatre" tipus="general" aforament="30"/>
         </recinte>
 
-        <recinte id="R16" nom="Centre d'Arts Esceniques">
-            <zona id="Z35" nom="Zona Premium" tipus="numerada" aforament="60"/>
-            <zona id="Z36" nom="Zona Estandard" tipus="numerada" aforament="120"/>
+
+        <!-- SALES GRANS: 100 numerades + 40 generals -->
+
+        <recinte id="R16" nom="Sala Gran">
+            <zona id="Z31" nom="Zona Premium" tipus="numerada" aforament="100"/>
+            <zona id="Z32" nom="Zona Estandard" tipus="general" aforament="40"/>
         </recinte>
 
-        <recinte id="R17" nom="Pavello de la Ciutat">
-            <zona id="Z37" nom="Tribuna VIP" tipus="numerada" aforament="150"/>
-            <zona id="Z38" nom="Pista" tipus="general" aforament="500"/>
+        <recinte id="R17" nom="Palau de la Musica">
+            <zona id="Z33" nom="Platea Premium" tipus="numerada" aforament="100"/>
+            <zona id="Z34" nom="Lateral" tipus="general" aforament="40"/>
         </recinte>
 
-        <recinte id="R18" nom="Teatre de Montjuic">
-            <zona id="Z39" nom="Platea" tipus="numerada" aforament="100"/>
-            <zona id="Z40" nom="Amfiteatre" tipus="numerada" aforament="80"/>
+        <recinte id="R18" nom="Arena Central">
+            <zona id="Z35" nom="VIP" tipus="numerada" aforament="100"/>
+            <zona id="Z36" nom="Pista General" tipus="general" aforament="40"/>
         </recinte>
 
-        <recinte id="R19" nom="Espai Jove">
-            <zona id="Z41" nom="Zona Preferent" tipus="numerada" aforament="50"/>
-            <zona id="Z42" nom="Zona General" tipus="general" aforament="200"/>
-            <zona id="Z43" nom="Zona Reduida" tipus="numerada" aforament="30"/>
+        <recinte id="R19" nom="Pavello de la Ciutat">
+            <zona id="Z37" nom="Tribuna VIP" tipus="numerada" aforament="100"/>
+            <zona id="Z38" nom="Pista" tipus="general" aforament="40"/>
         </recinte>
 
         <recinte id="R20" nom="Gran Teatre Metropolita">
-            <zona id="Z44" nom="Platea Premium" tipus="numerada" aforament="120"/>
-            <zona id="Z45" nom="Amfiteatre" tipus="numerada" aforament="100"/>
+            <zona id="Z39" nom="Platea Premium" tipus="numerada" aforament="100"/>
+            <zona id="Z40" nom="Amfiteatre" tipus="general" aforament="40"/>
         </recinte>
-        
+
     </recintes>
+
 
     <!-- Esdeveniments -->
     <esdeveniments>
