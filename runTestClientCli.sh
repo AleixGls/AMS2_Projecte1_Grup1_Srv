@@ -1,2 +1,2 @@
 #!/bin/bash
-.\run.ps1 grup1.server.ClientTestCLI
+.\run.sh grup1.server.ClientTestCLI

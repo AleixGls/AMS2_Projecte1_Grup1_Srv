@@ -40,8 +40,8 @@ public class GestorCompres {
             JSONArray entrades = peticio.getJSONArray("entrades");
 
             // Llegir el cataleg per saber les quotes de cada tipus d'entrada
-            ExtractorDadesXML extractor = new ExtractorDadesXML("ESDEVENIMENTS.XML");
-            Cataleg cataleg = extractor.processarFitxerXML();
+            ExtractorDadesBBDD extractor = new ExtractorDadesBBDD("cataleg.db");
+Cataleg cataleg = extractor.processarBBDD();
             if (cataleg == null) {
                 return error("No s'ha pogut llegir el cataleg");
             }
