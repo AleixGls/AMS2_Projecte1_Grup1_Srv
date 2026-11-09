@@ -33,8 +33,8 @@ public class ServerConnection extends WebSocketServer {
         try {
 
             // Crear el extractor i obtenir el objecte Cataleg
-            ExtractorDadesXML extractor = new ExtractorDadesXML("ESDEVENIMENTS.XML");
-            Cataleg cataleg = extractor.processarFitxerXML();
+            ExtractorDadesBBDD extractor = new ExtractorDadesBBDD("cataleg.db");
+Cataleg cataleg = extractor.processarBBDD();
 
             // Comprovar que s'ha pogut llegir el XML
             if (cataleg == null) {
@@ -170,6 +170,18 @@ public class ServerConnection extends WebSocketServer {
                 conn.send(respuesta.toString());
 
                 System.out.println("COMPRA resposta: " + respuesta);
+            }
+
+            // Peticio de les entrades comprades amb un correu
+            else if (type.equals("lesMevesEntrades")) {
+
+                System.out.println("LES MEVES ENTRADES solicitades");
+
+                // Consultar les entrades del correu i enviar-les al client
+                JSONObject respuesta = gestorCompres.consultarEntrades(obj.getString("correu"));
+                conn.send(respuesta.toString());
+
+                System.out.println("LES MEVES ENTRADES enviades");
             }
 
             else {

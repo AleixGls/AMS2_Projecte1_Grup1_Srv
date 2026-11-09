@@ -35,6 +35,12 @@
             <version>3.2.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.47.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -68,7 +74,8 @@
                                 org.java-websocket,
                                 tools.jackson.core,
                                 com.fasterxml.jackson.core,
-                                org.slf4j
+                                org.slf4j,
+                                org.xerial
                             </includeGroupIds>
                             <includeScope>runtime</includeScope>
                             <outputDirectory>${project.build.outputDirectory}</outputDirectory>
