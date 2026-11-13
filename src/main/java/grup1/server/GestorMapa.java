@@ -164,6 +164,9 @@ public class GestorMapa {
                 }
             }
 
+
+            // Consultar las entradas vendidas del evento
+            JSONArray entradesVenudes = consultarEntradasVendidas(connexio, idEsdeveniment);
             // Crear respuesta final
             JSONObject respuesta = new JSONObject();
 
@@ -172,6 +175,7 @@ public class GestorMapa {
             respuesta.put("recinte", idRecinte);
             respuesta.put("zonas", zonas);
             respuesta.put("seients", seients);
+            respuesta.put("entradesVenudes", entradesVenudes);
 
             return respuesta;
 
@@ -183,6 +187,89 @@ public class GestorMapa {
 
             return error("No se pudo consultar el mapa.");
         }
+    }
+
+    // Consultar las entradas vendidas de un evento
+    private JSONArray consultarEntradasVendidas(
+            Connection connexio,
+            String idEsdeveniment
+    ) throws Exception {
+
+        String sql = """
+                SELECT
+                    v.Data_Reserva AS fechaHoraCompra,
+                    e.ID_Entrada AS localizador,
+                    t.Nom AS tipoEntrada,
+                    COALESCE(s.ID_Seient, '') AS asiento,
+                    v.Nom_Comprador AS comprador,
+                    e.Estat AS estadoEntrada
+
+                FROM ENTRADA e
+
+                JOIN VENDA v
+                    ON v.ID_Venda = e.ID_Venda
+
+                JOIN TIPUS_ENTRADA t
+                    ON t.ID_Tipus_Entrada = e.ID_Tipus_Entrada
+
+                LEFT JOIN SEIENT s
+                    ON s.ID_Seient = e.ID_Seient
+
+                WHERE t.ID_Esdeveniment = ?
+                AND v.Estat = 'confirmada'
+                AND e.Estat IN ('venuda', 'validada')
+
+                ORDER BY v.Data_Reserva ASC, e.ID_Entrada ASC
+                """;
+
+        JSONArray entradas = new JSONArray();
+
+        try (PreparedStatement consulta = connexio.prepareStatement(sql)) {
+
+            consulta.setString(1, idEsdeveniment);
+
+            try (ResultSet resultado = consulta.executeQuery()) {
+
+                while (resultado.next()) {
+
+                    JSONObject entrada = new JSONObject();
+
+                    entrada.put(
+                            "fechaHoraCompra",
+                            resultado.getString("fechaHoraCompra")
+                    );
+
+                    entrada.put(
+                            "localizador",
+                            resultado.getString("localizador")
+                    );
+
+                    entrada.put(
+                            "tipoEntrada",
+                            resultado.getString("tipoEntrada")
+                    );
+
+                    entrada.put(
+                            "asiento",
+                            resultado.getString("asiento")
+                    );
+
+                    entrada.put(
+                            "comprador",
+                            resultado.getString("comprador")
+                    );
+
+                    entrada.put(
+                            "estadoEntrada",
+                            resultado.getString("estadoEntrada")
+                    );
+
+                    entradas.put(entrada);
+                }
+            }
+        }
+
+        return entradas;
     }
 
     // Obtener un identificador permitiendo valores nulos
