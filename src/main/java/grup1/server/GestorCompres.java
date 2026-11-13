@@ -133,7 +133,7 @@ public class GestorCompres {
 
             // Buscar les entrades de les vendes confirmades d'aquest correu
             PreparedStatement consulta = connexio.prepareStatement(
-                "SELECT e.ID_Entrada, t.ID_Esdeveniment, e.ID_Tipus_Entrada " +
+                "SELECT e.ID_Entrada, t.ID_Esdeveniment, e.ID_Tipus_Entrada, v.Nom_Comprador " +
                 "FROM ENTRADA e " +
                 "JOIN VENDA v ON v.ID_Venda = e.ID_Venda " +
                 "JOIN TIPUS_ENTRADA t ON t.ID_Tipus_Entrada = e.ID_Tipus_Entrada " +
