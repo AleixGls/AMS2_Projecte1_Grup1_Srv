@@ -18,6 +18,7 @@ public class ServerConnection extends WebSocketServer {
     // Atributs
     private Map<WebSocket, String> catalogosClientes = new ConcurrentHashMap<>();
     private GestorCompres gestorCompres = new GestorCompres();
+    private GestorMapa gestorMapa = new GestorMapa();
 
 
     
@@ -182,6 +183,22 @@ Cataleg cataleg = extractor.processarBBDD();
                 conn.send(respuesta.toString());
 
                 System.out.println("LES MEVES ENTRADES enviades");
+            }
+
+            else if (type.equals("mapa")) {
+                System.out.println("MAPA solicitado");
+
+                String idEsdeveniment = obj.getString("esdeveniment");
+
+                // Consultar el mapa en SQLite
+                JSONObject respuesta = gestorMapa.consultarMapa(idEsdeveniment);
+
+                respuesta.put("esdeveniment", idEsdeveniment);
+
+                // Enviar los datos al cliente
+                conn.send(respuesta.toString());
+
+                System.out.println("MAPA respuesta: " + respuesta);
             }
 
             else {
