@@ -150,6 +150,7 @@ public class GestorCompres {
                 entrada.put("localitzador", resultat.getString("ID_Entrada"));
                 entrada.put("esdeveniment", resultat.getString("ID_Esdeveniment"));
                 entrada.put("tipus", resultat.getString("ID_Tipus_Entrada"));
+                entrada.put("nom", resultat.getString("Nom_Comprador"));
                 llista.put(entrada);
             }
 
