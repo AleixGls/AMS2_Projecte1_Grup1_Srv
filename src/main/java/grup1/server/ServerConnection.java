@@ -19,6 +19,7 @@ public class ServerConnection extends WebSocketServer {
     private Map<WebSocket, String> catalogosClientes = new ConcurrentHashMap<>();
     private GestorCompres gestorCompres = new GestorCompres();
     private GestorMapa gestorMapa = new GestorMapa();
+    private GestorValidacio gestorValidacio = new GestorValidacio();
 
 
     
@@ -199,6 +200,22 @@ Cataleg cataleg = extractor.processarBBDD();
                 conn.send(respuesta.toString());
 
                 System.out.println("MAPA respuesta: " + respuesta);
+            } 
+
+            else if (type.equals("validarEntrada")) {
+            
+                System.out.println("VALIDAR ENTRADA solicitado");
+            
+                // Obtener el identificador de la entrada enviado por el cliente
+                String idEntrada = obj.getString("idEntrada");
+            
+                // Validar la entrada en la base de datos
+                JSONObject respuesta = gestorValidacio.validarEntrada(idEntrada);
+            
+                // Enviar la respuesta al cliente
+                conn.send(respuesta.toString());
+            
+                System.out.println("VALIDAR ENTRADA respuesta: " + respuesta);
             }
 
             else {
