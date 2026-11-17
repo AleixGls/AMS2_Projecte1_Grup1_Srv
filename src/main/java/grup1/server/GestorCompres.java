@@ -29,16 +29,38 @@ public class GestorCompres {
     // Processa una peticio de compra i guarda la venda i les entrades a la base de dades
     public synchronized JSONObject processarCompra(JSONObject peticio) {
 
-        // Llegir les dades del comprador i les entrades demanades
+        // Llegir les dades del comprador, les entrades generals i les butaques demanades
         String nom = peticio.getString("nom");
         String correu = peticio.getString("correu");
-        JSONArray entrades = peticio.getJSONArray("entrades");
+        JSONArray entrades = peticio.optJSONArray("entrades");
+        JSONArray seients = peticio.optJSONArray("seients");
+        if (entrades == null) {
+            entrades = new JSONArray();
+        }
+        if (seients == null) {
+            seients = new JSONArray();
+        }
 
         ExtractorDadesBBDD extractor = new ExtractorDadesBBDD(NOM_BBDD);
         Connection connexio = null;
 
         try {
             connexio = extractor.connectar();
+
+            // Comprovar primer totes les butaques: si alguna no esta lliure, no es compra res
+            JSONArray seientsFallats = new JSONArray();
+            for (int i = 0; i < seients.length(); i++) {
+                JSONObject seient = seients.getJSONObject(i);
+                if (!seientLliure(connexio, seient.getString("seient"), seient.getString("tipus"))) {
+                    seientsFallats.put(seient.getString("seient"));
+                }
+            }
+
+            if (seientsFallats.length() > 0) {
+                JSONObject resposta = error("Alguna butaca ja no esta disponible. No s'ha comprat res.");
+                resposta.put("seientsFallats", seientsFallats);
+                return resposta;
+            }
 
             // Fer tota la compra en una sola transaccio: o es guarda tot o no es guarda res
             connexio.setAutoCommit(false);
@@ -55,15 +77,16 @@ public class GestorCompres {
             insertVenda.setString(4, LocalDateTime.now().toString());
             insertVenda.executeUpdate();
 
-            // Afegir cada entrada a la venda i generar el seu localitzador
             JSONArray localitzadors = new JSONArray();
+
+            // Afegir les entrades generals
             for (int i = 0; i < entrades.length(); i++) {
                 JSONObject entrada = entrades.getJSONObject(i);
                 String idTipus = entrada.getString("tipus");
                 int quantitat = entrada.getInt("quantitat");
 
                 // Comprovar que el tipus existeix i que es de zona general
-                double preu = obtenirPreuGeneral(connexio, idTipus);
+                double preu = obtenirPreu(connexio, idTipus, "general");
                 if (preu < 0) {
                     connexio.rollback();
                     return error("L'entrada " + idTipus + " no existeix o no es general");
@@ -71,19 +94,27 @@ public class GestorCompres {
 
                 for (int j = 0; j < quantitat; j++) {
                     String localitzador = generarLocalitzador(connexio, localitzadors);
-
-                    PreparedStatement insertEntrada = connexio.prepareStatement(
-                        "INSERT INTO ENTRADA (ID_Entrada, ID_Venda, ID_Tipus_Entrada, Preu_Pagament, Estat) " +
-                        "VALUES (?, ?, ?, ?, 'venuda')"
-                    );
-                    insertEntrada.setString(1, localitzador);
-                    insertEntrada.setString(2, idVenda);
-                    insertEntrada.setString(3, idTipus);
-                    insertEntrada.setDouble(4, preu);
-                    insertEntrada.executeUpdate();
-
+                    inserirEntrada(connexio, localitzador, idVenda, null, idTipus, preu);
                     localitzadors.put(localitzador);
                 }
+            }
+
+            // Afegir les butaques numerades
+            for (int i = 0; i < seients.length(); i++) {
+                JSONObject seient = seients.getJSONObject(i);
+                String idTipus = seient.getString("tipus");
+                String idSeient = seient.getString("seient");
+
+                // Comprovar que el tipus existeix i que es de zona numerada
+                double preu = obtenirPreu(connexio, idTipus, "numerada");
+                if (preu < 0) {
+                    connexio.rollback();
+                    return error("L'entrada " + idTipus + " no existeix o no es numerada");
+                }
+
+                String localitzador = generarLocalitzador(connexio, localitzadors);
+                inserirEntrada(connexio, localitzador, idVenda, idSeient, idTipus, preu);
+                localitzadors.put(localitzador);
             }
 
             // Confirmar la venda
@@ -168,14 +199,50 @@ public class GestorCompres {
         }
     }
 
-    // Retorna el preu d'un tipus d'entrada si es de zona general, o -1 si no ho es
-    private double obtenirPreuGeneral(Connection connexio, String idTipus) throws Exception {
+    // Guarda una entrada a la base de dades (idSeient es null si es general)
+    private void inserirEntrada(Connection connexio, String localitzador, String idVenda,
+                                String idSeient, String idTipus, double preu) throws Exception {
+        PreparedStatement insertEntrada = connexio.prepareStatement(
+            "INSERT INTO ENTRADA (ID_Entrada, ID_Venda, ID_Seient, ID_Tipus_Entrada, Preu_Pagament, Estat) " +
+            "VALUES (?, ?, ?, ?, ?, 'venuda')"
+        );
+        insertEntrada.setString(1, localitzador);
+        insertEntrada.setString(2, idVenda);
+        insertEntrada.setString(3, idSeient);
+        insertEntrada.setString(4, idTipus);
+        insertEntrada.setDouble(5, preu);
+        insertEntrada.executeUpdate();
+    }
+
+    // Comprova si una butaca es de la zona del tipus, no esta bloquejada i no esta venuda en aquest esdeveniment
+    private boolean seientLliure(Connection connexio, String idSeient, String idTipus) throws Exception {
+        PreparedStatement consulta = connexio.prepareStatement(
+            "SELECT 1 FROM SEIENT s " +
+            "JOIN TIPUS_ENTRADA t ON t.ID_Zona = s.ID_Zona " +
+            "WHERE s.ID_Seient = ? AND t.ID_Tipus_Entrada = ? AND s.Estat = 'disponible' " +
+            "AND NOT EXISTS (SELECT 1 FROM ENTRADA e " +
+            "                JOIN VENDA v ON v.ID_Venda = e.ID_Venda " +
+            "                JOIN TIPUS_ENTRADA t2 ON t2.ID_Tipus_Entrada = e.ID_Tipus_Entrada " +
+            "                WHERE e.ID_Seient = s.ID_Seient " +
+            "                AND t2.ID_Esdeveniment = t.ID_Esdeveniment " +
+            "                AND e.Estat IN ('venuda', 'validada') " +
+            "                AND v.Estat IN ('pendent', 'confirmada'))"
+        );
+        consulta.setString(1, idSeient);
+        consulta.setString(2, idTipus);
+        ResultSet resultat = consulta.executeQuery();
+        return resultat.next();
+    }
+
+    // Retorna el preu d'un tipus d'entrada si la seva zona es del tipus indicat (general o numerada), o -1 si no
+    private double obtenirPreu(Connection connexio, String idTipus, String tipusZona) throws Exception {
         PreparedStatement consulta = connexio.prepareStatement(
             "SELECT t.Preu FROM TIPUS_ENTRADA t " +
             "JOIN ZONA z ON z.ID_Zona = t.ID_Zona " +
-            "WHERE t.ID_Tipus_Entrada = ? AND z.Tipus = 'general'"
+            "WHERE t.ID_Tipus_Entrada = ? AND z.Tipus = ?"
         );
         consulta.setString(1, idTipus);
+        consulta.setString(2, tipusZona);
         ResultSet resultat = consulta.executeQuery();
 
         if (resultat.next()) {
