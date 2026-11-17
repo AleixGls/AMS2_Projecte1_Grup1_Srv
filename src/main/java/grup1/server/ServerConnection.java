@@ -20,6 +20,7 @@ public class ServerConnection extends WebSocketServer {
     private GestorCompres gestorCompres = new GestorCompres();
     private GestorMapa gestorMapa = new GestorMapa();
     private GestorValidacio gestorValidacio = new GestorValidacio();
+    private GestorSeients gestorSeients = new GestorSeients();
 
 
     
@@ -184,6 +185,20 @@ Cataleg cataleg = extractor.processarBBDD();
                 conn.send(respuesta.toString());
 
                 System.out.println("LES MEVES ENTRADES enviades");
+            }
+
+            // Peticio de l'estat dels seients d'un tipus d'entrada numerada
+            else if (type.equals("seients")) {
+
+                System.out.println("SEIENTS solicitats");
+
+                JSONObject respuesta = gestorSeients.consultarSeients(
+                    obj.getString("esdeveniment"),
+                    obj.getString("tipus")
+                );
+                conn.send(respuesta.toString());
+
+                System.out.println("SEIENTS enviats");
             }
 
             else if (type.equals("mapa")) {
